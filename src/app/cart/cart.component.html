@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutAlign="start stretch" class="width-100 height-100">
+  <div fxLayout="row wrap" fxLayoutAlign="start stretch" *ngIf="!singleProduct" class="height-100">
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 25%; padding: 1em"
+      *ngFor="let option of productList">
+      <div fxLayout="column" fxLayoutAlign="start stretch" (click)="viewProduct(option.id)">
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+          <img [src]="option.image" style="width:10em; height:10em">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch"><span class="prodTitle ellipsis">{{option.title || ''}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch"><span
+            class="prodDesc ellipsis">{{option.description || ''}}</span></div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 1em;">
+          <div fxLayout="row" fxLayoutAlign="start stretch"><span>Rating: {{option.rating.rate || ''}}</span></div>
+          <div fxLayout="row" fxLayoutAlign="start stretch"><span>Count: {{option.rating.count || ''}}</span></div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch" style="padding-top: 1em;"><span>Price:
+            {{option.price || ''}}</span></div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center start" style="padding-top: 1em;" *ngIf="!cartPage">
+        <button (click)="addCart(option)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="start stretch" *ngIf="singleProduct" class="width-100 height-100"
+    style="padding:1em">
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 50%; height: 50%;">
+      <div fxLayout="row" fxLayoutAlign="start stretch" class="width-100 height-100">
+        <img [src]="productData.image" class="width-100 height-100">
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" style="width: 50%; height: 50%; padding: 1em;">
+      <div fxLayout="column" fxLayoutAlign="center start">
+        <div fxLayout="row" fxLayoutAlign="start stretch" class="width-100"><span
+            class="prodTitle ellipsis">{{productData.title || ''}}</span></div>
+        <div fxLayout="row" fxLayoutAlign="start stretch" class="width-100"><span
+            class="prodDesc ellipsis">{{productData.description || ''}}</span></div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 1em;" class="width-100">
+          <div fxLayout="row" fxLayoutAlign="start stretch"><span>Rating: {{productData.rating.rate || ''}}</span></div>
+          <div fxLayout="row" fxLayoutAlign="start stretch"><span>Count: {{productData.rating.count || ''}}</span></div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch" style="padding-top: 1em;" class="width-100"><span>Price:
+            {{productData.price || ''}}</span></div>
+        <div fxLayout="row" fxLayoutAlign="center start" style="padding-top: 1em;" class="width-100">
+          <button (click)="addCart(productData)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
